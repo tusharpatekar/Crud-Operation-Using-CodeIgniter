@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="text" name="phone" class="form-control" required pattern="\d{10}" title="Phone number must be 10 digits">
+                                <input type="text" name="phone" class="form-control" required pattern="\d{10}" title="Phone number must be 10 digits" placeholder="Phone number must be 10 digits">
                             </div>
                             <button type="button" class="btn btn-primary next">Next</button>
                         </div>
