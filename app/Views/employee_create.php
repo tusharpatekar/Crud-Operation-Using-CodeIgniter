@@ -121,9 +121,11 @@
 
         // Button click handlers
         $('#stepper .next').click(function() {
-            steps.eq(currentStep).hide();
-            currentStep++;
-            steps.eq(currentStep).show();
+            if (validateStep(currentStep)) {
+                steps.eq(currentStep).hide();
+                currentStep++;
+                steps.eq(currentStep).show();
+            }
         });
 
         $('#stepper .prev').click(function() {
@@ -135,9 +137,7 @@
         // Form submission handler
         $('#employeeForm').submit(function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
-            var isValid = validateForm();
-
-            if (isValid) {
+            if (validateForm()) {
                 // If the form is valid, submit it via AJAX
                 $.ajax({
                     url: $(this).attr('action'),
@@ -146,7 +146,7 @@
                     success: function(response) {
                         console.log('Form submitted successfully');
                         alert('Employee added successfully!');
-                        window.location.href = '/'; 
+                        window.location.href = '/employee'; 
                     },
                     error: function(xhr, status, error) {
                         // Handle errors
@@ -160,11 +160,39 @@
             }
         });
 
-        // Validation function
+        // Step validation function
+        function validateStep(step) {
+            var isValid = true;
+            steps.eq(step).find('input, select, textarea').each(function() {
+                if (!this.checkValidity()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
+
+        // Form validation function
         function validateForm() {
-            // Implement your validation logic here
-            // Return true if the form is valid, false otherwise
-            return $('#employeeForm')[0].checkValidity();
+            var isValid = true;
+            $('#employeeForm')[0].checkValidity();
+            $('#employeeForm').find('input, select, textarea').each(function() {
+                if (!this.checkValidity()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+
+                    var step = $(this).closest('.step');
+                    if (step.length && step.is(':hidden')) {
+                        steps.hide();
+                        step.show();
+                    }
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            return isValid;
         }
 
         $('#country').change(function() {
