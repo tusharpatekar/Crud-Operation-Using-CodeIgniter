@@ -146,7 +146,7 @@
                     success: function(response) {
                         console.log('Form submitted successfully');
                         alert('Employee added successfully!');
-                        window.location.href = '/employee'; 
+                        window.location.href = '/'; 
                     },
                     error: function(xhr, status, error) {
                         // Handle errors
