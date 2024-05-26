@@ -58,8 +58,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Edit Employee Modal -->
     <div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -106,14 +104,13 @@
                                 <label>State</label>
                                 <select name="state" id="modal_state" class="form-control" required>
                                     <option value="">Select State</option>
-                                    <!-- Options will be dynamically populated using JavaScript based on the selected country -->
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>City</label>
                                 <select name="city" id="modal_city" class="form-control" required>
                                     <option value="">Select City</option>
-                                    <!-- Options will be dynamically populated using JavaScript based on the selected state -->
+                                  
                                 </select>
                             </div>
                             <button type="button" class="btn btn-secondary prev-step">Previous</button>

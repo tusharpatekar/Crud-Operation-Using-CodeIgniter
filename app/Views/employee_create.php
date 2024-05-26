@@ -34,7 +34,6 @@
 
             <form id="employeeForm" action="<?php echo base_url('employee/store'); ?>" method="post">
                 <div id="stepper">
-                    <!-- Step 1: Personal Information -->
                     <div class="step">
                         <h3>Personal Information</h3>
                         <div id="personalForm">
@@ -53,7 +52,6 @@
                             <button type="button" class="btn btn-primary next">Next</button>
                         </div>
                     </div>
-                    <!-- Step 2: Address Information -->
                     <div class="step" style="display:none;">
                         <h3>Address Information</h3>
                         <div class="form-group">
@@ -80,7 +78,6 @@
                         <button type="button" class="btn btn-secondary prev">Previous</button>
                         <button type="button" class="btn btn-primary next">Next</button>
                     </div>
-                    <!-- Step 3: Additional Information -->
                     <div class="step" style="display:none;">
                         <h3>Additional Information</h3>
                         <div id="additionalForm">
@@ -116,10 +113,8 @@
         var currentStep = 0;
         var steps = $('.step');
 
-        // Hide all steps except the first one
         steps.hide().eq(currentStep).show();
 
-        // Button click handlers
         $('#stepper .next').click(function() {
             if (validateStep(currentStep)) {
                 steps.eq(currentStep).hide();
@@ -134,33 +129,32 @@
             steps.eq(currentStep).show();
         });
 
-        // Form submission handler
         $('#employeeForm').submit(function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+            event.preventDefault(); 
             if (validateForm()) {
-                // If the form is valid, submit it via AJAX
+               
                 $.ajax({
                     url: $(this).attr('action'),
                     method: 'POST',
-                    data: $(this).serialize(), // Serialize form data
+                    data: $(this).serialize(),
                     success: function(response) {
                         console.log('Form submitted successfully');
                         alert('Employee added successfully!');
                         window.location.href = '/'; 
                     },
                     error: function(xhr, status, error) {
-                        // Handle errors
+                        
                         console.error('Error:', error);
                         showErrorAlert('There was an error submitting the form. Please try again.');
                     }
                 });
             } else {
-                // If the form is invalid, display an error message
+                
                 showErrorAlert('Please fill in all required fields.');
             }
         });
 
-        // Step validation function
+      
         function validateStep(step) {
             var isValid = true;
             steps.eq(step).find('input, select, textarea').each(function() {
@@ -174,7 +168,7 @@
             return isValid;
         }
 
-        // Form validation function
+       
         function validateForm() {
             var isValid = true;
             $('#employeeForm')[0].checkValidity();

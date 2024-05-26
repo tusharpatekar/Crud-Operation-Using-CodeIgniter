@@ -9,13 +9,16 @@ class CitiesSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['state_id' => 1, 'name' => 'Mumbai'], // Mumbai, Maharashtra, India
-            ['state_id' => 1, 'name' => 'Pune'], // Pune, Maharashtra, India
-            ['state_id' => 2, 'name' => 'New Delhi'], // New Delhi, Delhi, India
-            ['state_id' => 3, 'name' => 'Los Angeles'], // Los Angeles, California, United States
-            ['state_id' => 3, 'name' => 'San Francisco'], // San Francisco, California, United States
-            ['state_id' => 4, 'name' => 'London'], // London, England, United Kingdom
-            ['state_id' => 5, 'name' => 'Toronto'], // Toronto, Ontario, Canada
+            ['state_id' => 1, 'name' => 'Mumbai'],
+            ['state_id' => 1, 'name' => 'Nashik'],
+            ['state_id' => 1, 'name' => 'Ahmednagar'],
+            ['state_id' => 1, 'name' => 'Sambhaji Nagar'],
+            ['state_id' => 1, 'name' => 'Pune'], 
+            ['state_id' => 2, 'name' => 'New Delhi'],
+            ['state_id' => 3, 'name' => 'Los Angeles'],
+            ['state_id' => 3, 'name' => 'San Francisco'],
+            ['state_id' => 4, 'name' => 'London'],
+            ['state_id' => 5, 'name' => 'Toronto'],
         ];
 
         $this->db->table('cities')->insertBatch($data);
